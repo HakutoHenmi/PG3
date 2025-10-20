@@ -2,7 +2,6 @@
 using namespace std;
 
 // ================================
-// 関数テンプレート Min()
 // 2つの値を比べて小さい方を返す
 // ================================
 template <typename T> T Min(T a, T b) { return (a < b) ? a : b; }

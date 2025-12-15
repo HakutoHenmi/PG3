@@ -32,7 +32,7 @@ static void InsertAfter(std::list<const char *> &L, const char *afterName,
   L.push_back(newName);
 }
 
-// 1行の矢印並び表示（見た目はスライド参考）
+// 1行の矢印並び表示
 static void PrintLineup(const std::list<const char *> &L, const char *title) {
   std::cout << "===== " << title << " =====\n";
   size_t i = 0, n = L.size();
@@ -56,7 +56,7 @@ static void PrintTable(const std::list<const char *> &L, const char *title) {
 }
 
 // ==== 年代別データ ====
-// 2019年（高輪ゲートウェイ直前）：Nishi-Nippori(1971開業) は含める
+// 2019年(高輪ゲートウェイ直前)：Nishi-Nippori(1971開業)は含める
 static std::list<const char *> Make2019() {
   const char *seq[] = {
       "Tokyo",     "Kanda",      "Akihabara",    "Okachimachi",
@@ -73,14 +73,14 @@ static std::list<const char *> Make2019() {
   return L;
 }
 
-// 1970年：Nishi-Nippori(1971) 開業前 → 2019から除去
+// 1970: Nishi-Nippori(1971) before opening -> removed from 2019
 static std::list<const char *> Make1970() {
   auto L = Make2019();
   RemoveByName(L, "Nishi-Nippori");
   return L;
 }
 
-// 2022年：Takanawa Gateway(2020) を Shinagawa と Tamachi の間へ挿入
+// 2022年：Takanawa Gatewa(2020)を Shinagawa と Tamachi の間へ挿入
 static std::list<const char *> Make2022() {
   auto L = Make2019();
   InsertAfter(L, "Shinagawa", "Takanawa Gateway"); // 品川の直後に挿入

@@ -107,27 +107,19 @@ static void PrintList(const std::vector<std::string> &v, const char *title) {
 }
 
 int main(int argc, char *argv[]) {
-  // 入力ファイル名
   const std::string path = (argc >= 2) ? argv[1] : "PG3_2025_01_02.txt";
 
-  // 読み込み
   std::vector<std::string> links;
   if (!LoadLinks(path, links)) {
     std::cerr << "[Error] ファイルを開けないか、データが空です: " << path
-              << "\n"
-              << "        例) " << (argc >= 1 ? argv[0] : "app")
-              << " PG3_2025_01_02.txt\n";
+              << "\n";
     return 1;
   }
 
-  // 生データ表示
-  PrintList(links, "Loaded (raw)");
-
   // 学籍番号で昇順ソート
   std::sort(links.begin(), links.end(), LessByStuId);
-  PrintList(links, "Sorted by student-id (k### -> g####)");
 
-  // 最終表
+  // 最終表（提出用出力）
   std::cout << "No, student-id, email\n";
   int no = 1;
   for (const auto &s : links) {

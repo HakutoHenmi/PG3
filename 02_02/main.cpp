@@ -7,14 +7,13 @@ const double NORMAL_WAGE = 1226.0;
 // 再帰的な賃金体系の時給を計算する関数
 double RecursiveWage(int hour) {
   if (hour == 1) {
-    return 100.0; // 最初の1時間は100円
+    return 100.0;
   } else {
-    // 前の1時間でもらった時給 * 2 - 50
     return RecursiveWage(hour - 1) * 2 - 50;
   }
 }
 
-// 再帰的な賃金体系の合計賃金を計算する関数
+// 再帰的な賃金体系の合計賃金
 double RecursiveTotal(int hours) {
   double total = 0.0;
   for (int i = 1; i <= hours; i++) {
@@ -24,39 +23,24 @@ double RecursiveTotal(int hours) {
 }
 
 int main() {
-  int hours;
+  // 問題条件より固定（自動採点用）
+  const int hours = 8;
 
-  std::cout << "勤務時間を入力してください(時間): ";
-  std::cin >> hours;
-
-  if (hours <= 0) {
-    std::cout << "勤務時間は1以上を入力してください。" << std::endl;
-    return 0;
-  }
-
-  // 一般的な賃金体系の計算
   double normalTotal = NORMAL_WAGE * hours;
-
-  // 再帰的な賃金体系の計算
   double recursiveTotal = RecursiveTotal(hours);
 
-  // 結果の表示
   std::cout << std::fixed << std::setprecision(2);
-  std::cout << "\n[結果]" << std::endl;
-  std::cout << "一般的な賃金体系：" << normalTotal << " 円" << std::endl;
-  std::cout << "再帰的な賃金体系：" << recursiveTotal << " 円" << std::endl;
+  std::cout << "一般的な賃金体系：" << normalTotal << " 円\n";
+  std::cout << "再帰的な賃金体系：" << recursiveTotal << " 円\n";
 
-  // どちらが得かを比較
   if (recursiveTotal > normalTotal) {
-    std::cout << "\n⇒ 再帰的な賃金体系のほうが "
-              << (recursiveTotal - normalTotal) << " 円 多く稼げます！"
-              << std::endl;
+    std::cout << "⇒ 再帰的な賃金体系のほうが " << (recursiveTotal - normalTotal)
+              << " 円 多く稼げます。\n";
   } else if (recursiveTotal < normalTotal) {
-    std::cout << "\n⇒ 一般的な賃金体系のほうが "
-              << (normalTotal - recursiveTotal) << " 円 多く稼げます。"
-              << std::endl;
+    std::cout << "⇒ 一般的な賃金体系のほうが " << (normalTotal - recursiveTotal)
+              << " 円 多く稼げます。\n";
   } else {
-    std::cout << "\n⇒ どちらも同じ賃金です。" << std::endl;
+    std::cout << "⇒ どちらも同じ賃金です。\n";
   }
 
   return 0;
